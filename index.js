@@ -462,6 +462,11 @@
 
 		activeModal.removeAttribute('hidden');
 
+		// Fire an event to allow for hooking into modal open
+		var openEvent = document.createEvent('HTMLEvents');
+		openEvent.initEvent(ARIAmodal.NS + ':open', true, true);
+		document.dispatchEvent(openEvent);
+
 		// Mostly reliable fix for iOS issue where VO focus is not moved
 		// to the dialog on open. Credit to Thomas Jaggi - codepen.io/backflip
 		// for the fix.
@@ -541,6 +546,12 @@
 				body.focus();
 			}
 		}
+
+		// Fire an event to allow for hooking into modal open
+		var closeEvent = document.createEvent('HTMLEvents');
+		closeEvent.initEvent(ARIAmodal.NS + ':close', true, true);
+		document.dispatchEvent(closeEvent);
+
 
 		initialTrigger = undefined;
 		activeModal = undefined;

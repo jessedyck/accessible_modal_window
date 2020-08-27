@@ -463,7 +463,6 @@
 		activeModal.removeAttribute('hidden');
 
 		// Fire an event to allow for hooking into modal open
-		var openEvent;
 		var eventName = ARIAmodal.NS + ':open';
 		var openEvent;
 		if (typeOf(window.CustomEvent) === 'function') {
@@ -559,7 +558,6 @@
 		}
 
 		// Fire an event to allow for hooking into modal close
-		var closeEvent;
 		var eventName = ARIAmodal.NS + ':close';
 		var closeEvent;
 		if (typeOf(window.CustomEvent) === 'function') {

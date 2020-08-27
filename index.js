@@ -463,8 +463,16 @@
 		activeModal.removeAttribute('hidden');
 
 		// Fire an event to allow for hooking into modal open
-		var openEvent = document.createEvent('HTMLEvents');
-		openEvent.initEvent(ARIAmodal.NS + ':open', true, true);
+		var openEvent;
+		var eventName = ARIAmodal.NS + ':open';
+		if (typeOf(window.CustomEvent) === 'function') {
+			closeEvent = new CustomEvent(eventName, {
+				bubbles: true
+			});
+		} else {
+			openEvent = document.createEvent('CustomEvent');
+			openEvent.initCustomEvent(eventName, true, true, true);
+		}
 		activeModal.dispatchEvent(openEvent);
 
 		// Mostly reliable fix for iOS issue where VO focus is not moved
@@ -550,8 +558,16 @@
 		}
 
 		// Fire an event to allow for hooking into modal close
-		var closeEvent = document.createEvent('HTMLEvents');
-		closeEvent.initEvent(ARIAmodal.NS + ':close', true, true);
+		var closeEvent;
+		var eventName = ARIAmodal.NS + ':close';
+		if (typeOf(window.CustomEvent) === 'function') {
+			closeEvent = new CustomEvent(eventName, {
+				bubbles: true
+			});
+		} else {
+			closeEvent = document.createEvent('CustomEvent');
+			closeEvent.initCustomEvent(eventName, true, true, true);
+		}
 		for (var cm = 0; cm < closedModals.length; cm++) {
 			closedModals[cm].dispatchEvent(closeEvent);
 		}

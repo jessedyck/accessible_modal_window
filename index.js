@@ -465,7 +465,7 @@
 		// Fire an event to allow for hooking into modal open
 		var eventName = ARIAmodal.NS + ':open';
 		var openEvent;
-		if (typeOf(window.CustomEvent) === 'function') {
+		if ( typeOf(window.CustomEvent) === 'function' ) {
 			openEvent = new CustomEvent(eventName, {
 				bubbles: true
 			});
@@ -560,7 +560,7 @@
 		// Fire an event to allow for hooking into modal close
 		var eventName = ARIAmodal.NS + ':close';
 		var closeEvent;
-		if (typeOf(window.CustomEvent) === 'function') {
+		if ( typeOf(window.CustomEvent) === 'function' ) {
 			closeEvent = new CustomEvent(eventName, {
 				bubbles: true
 			});
@@ -568,7 +568,7 @@
 			closeEvent = document.createEvent('CustomEvent');
 			closeEvent.initCustomEvent(eventName, true, true, true);
 		}
-		for (var cm = 0; cm < closedModals.length; cm++) {
+		for ( var cm = 0; cm < closedModals.length; cm++ ) {
 			closedModals[cm].dispatchEvent(closeEvent);
 		}
 
